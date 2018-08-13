@@ -369,7 +369,7 @@ if ($find_references_to) {
 
         foreach ($allClasses as $class) {
             // Ignore vendor references
-            if ($class->location !== null && substr($class->location->file_name, 0, 4) === "src/") {
+            if ($class->location !== null && substr($class->location->file_name, 0, 4) !== "vendor/") {
                 foreach ($class->methods as $method) {
                     $fullMethodName = $class->name . "::" . $method->cased_name;
                     try {
