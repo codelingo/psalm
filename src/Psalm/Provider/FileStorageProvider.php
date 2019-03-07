@@ -31,14 +31,10 @@ class FileStorageProvider
     public function get($file_path)
     {
         $file_path = strtolower($file_path);
-        $temp_fp = $file_path;
-
-        if(strpos($file_path, '/./') !== false) {
-            $pos = strpos($file_path, '/./');
-            $temp_fp = substr($file_path,0,$pos).substr($file_path,$pos+2);
-        }
         
-        $file_path=$temp_fp;
+        if(strpos($file_path, '/./') !== false) {
+            $file_path = str_replace('/./', '/', $file_path);
+        }
 
         if (!isset(self::$storage[$file_path])) {
             throw new \InvalidArgumentException('Could not get file storage for ' . $file_path);
