@@ -31,6 +31,10 @@ class FileStorageProvider
     public function get($file_path)
     {
         $file_path = strtolower($file_path);
+        
+        if(strpos($file_path, '/./')) {
+            $file_path = str_replace('/./', '/', $file_path);
+        }
 
         if (!isset(self::$storage[$file_path])) {
             throw new \InvalidArgumentException('Could not get file storage for ' . $file_path);
