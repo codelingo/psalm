@@ -32,7 +32,7 @@ class FileStorageProvider
     {
         $file_path = strtolower($file_path);
         
-        if(strpos($file_path, '/./') !== false) {
+        if(strpos($file_path, '/./')) {
             $file_path = str_replace('/./', '/', $file_path);
         }
 
